@@ -1,4 +1,4 @@
-# Implementation of PDFAs.
+# PDFAs and learning algorithms
 
 ## Setup
 
