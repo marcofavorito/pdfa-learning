@@ -1,0 +1,35 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+pytest = "*"
+pytest-cov = "*"
+pytest-randomly = "*"
+ipython = "*"
+flake8 = "*"
+flake8-bugbear = "*"
+flake8-docstrings = "*"
+flake8-eradicate = "*"
+flake8-isort = "*"
+pydocstyle = "*"
+black = "==20.8b1"
+isort = "*"
+mypy = "*"
+bandit = "*"
+safety = "*"
+jupyter = "*"
+mkdocs = "*"
+
+[packages]
+numpy = "*"
+matplotlib = "*"
+gym = "*"
+scipy = "*"
+graphviz = "*"
+jupyter = "*"
+pynput = "*"
+
+[requires]
+python_version = "3.7"
