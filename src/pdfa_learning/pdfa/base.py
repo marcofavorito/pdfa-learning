@@ -5,15 +5,15 @@ from typing import AbstractSet, Collection, Set, Tuple
 
 import numpy as np
 
-from src.helpers.base import assert_
-from src.pdfa.helpers import (
+from pdfa_learning.helpers.base import assert_
+from pdfa_learning.pdfa.helpers import (
     _check_ergodicity,
     _check_is_legal_character,
     _check_is_legal_state,
     _check_is_legal_word,
     _check_transitions_are_legal,
 )
-from src.pdfa.types import Character, State, TransitionFunctionDict, Word
+from pdfa_learning.pdfa.types import Character, State, TransitionFunctionDict, Word
 
 
 @dataclass(frozen=True)

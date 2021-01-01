@@ -1,10 +1,9 @@
 """Base module for the learn pdfa implementation."""
 import pprint
 
-from src.learn_pdfa import logger
-from src.learn_pdfa.common import _Params
-from src.learn_pdfa.learn_probabilities import learn_probabilities
-from src.learn_pdfa.learn_subgraph import learn_subgraph
+from pdfa_learning.learn_pdfa import learn_probabilities, logger
+from pdfa_learning.learn_pdfa.common import _Params
+from pdfa_learning.learn_pdfa.learn_subgraph import learn_subgraph
 
 
 def learn_pdfa(**kwargs):

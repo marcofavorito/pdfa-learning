@@ -4,9 +4,9 @@ from collections import Counter
 from math import ceil, log, log2
 from typing import Dict, Optional, Sequence, Set, Tuple
 
-from src.learn_pdfa import logger
-from src.learn_pdfa.common import _Params
-from src.pdfa.types import Character, State, Word
+from pdfa_learning.learn_pdfa import logger
+from pdfa_learning.learn_pdfa.common import _Params
+from pdfa_learning.pdfa.types import Character, State, Word
 
 
 def _compute_m0(params: _Params):

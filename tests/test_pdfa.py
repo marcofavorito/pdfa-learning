@@ -4,8 +4,8 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from src.pdfa import PDFA
-from src.pdfa.render import to_graphviz
+from pdfa_learning.pdfa import PDFA
+from pdfa_learning.pdfa.render import to_graphviz
 from tests.conftest import tempdir
 
 

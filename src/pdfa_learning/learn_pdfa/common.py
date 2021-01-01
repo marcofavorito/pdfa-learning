@@ -5,9 +5,9 @@ from math import ceil
 from multiprocessing import Pool
 from typing import Callable, Optional, Sequence
 
-from src.helpers.base import assert_
-from src.pdfa import PDFA
-from src.pdfa.types import Word
+from pdfa_learning.helpers.base import assert_
+from pdfa_learning.pdfa import PDFA
+from pdfa_learning.pdfa.types import Word
 
 
 class Generator(ABC):

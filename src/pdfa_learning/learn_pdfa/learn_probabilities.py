@@ -5,10 +5,10 @@ from collections import Counter
 from math import ceil, log
 from typing import Dict, Optional, Set, Tuple
 
-from src.learn_pdfa import logger
-from src.learn_pdfa.common import _Params
-from src.pdfa import PDFA
-from src.pdfa.types import TransitionFunctionDict
+from pdfa_learning.learn_pdfa import logger
+from pdfa_learning.learn_pdfa.common import _Params
+from pdfa_learning.pdfa import PDFA
+from pdfa_learning.pdfa.types import TransitionFunctionDict
 
 
 def _sample_size(params: _Params) -> int:

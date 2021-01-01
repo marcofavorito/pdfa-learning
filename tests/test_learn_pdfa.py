@@ -4,9 +4,13 @@ from abc import abstractmethod
 import numpy as np
 import pytest
 
-from src.learn_pdfa.base import learn_pdfa
-from src.learn_pdfa.common import Generator, MultiprocessedGenerator, SimpleGenerator
-from src.pdfa import PDFA
+from pdfa_learning.learn_pdfa.base import learn_pdfa
+from pdfa_learning.learn_pdfa.common import (
+    Generator,
+    MultiprocessedGenerator,
+    SimpleGenerator,
+)
+from pdfa_learning.pdfa import PDFA
 
 
 class BaseTestGenerator:

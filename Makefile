@@ -57,42 +57,42 @@ clean-test: ## remove test and coverage artifacts
 	rm -fr .mypy_cache
 	rm -fr coverage.xml
 
-lint-all: black isort lint static bandit safety # vulture pylint ## run all linters
+lint-all: black isort lint static bandit safety vulture pylint ## run all linters
 
 lint: ## check style with flake8
-	flake8 src tests 
+	flake8 src/pdfa_learning tests scripts
 
 static: ## static type checking with mypy
-	mypy src tests 
+	mypy src/pdfa_learning tests scripts
 
 isort: ## sort import statements with isort
-	isort src tests 
+	isort src/pdfa_learning tests scripts
 
 isort-check: ## check import statements order with isort
-	isort --check-only src tests 
+	isort --check-only src/pdfa_learning tests scripts
 
 black: ## apply black formatting
-	black src tests 
+	black src/pdfa_learning tests scripts
 
 black-check: ## check black formatting
-	black --check --verbose src tests 
+	black --check --verbose src/pdfa_learning tests scripts
 
 bandit: ## run bandit
-	bandit src tests 
+	bandit src/pdfa_learning tests scripts
 
 safety: ## run safety
-	safety check
+	safety
 
 pylint: ## run pylint
-	pylint src tests 
+	pylint src/pdfa_learning tests scripts
 
 vulture: ## run vulture
-	vulture src /whitelist.py
+	vulture src/pdfa_learning scripts/whitelist.py
 
 test: ## run tests quickly with the default Python
 	pytest tests --doctest-modules \
-        src tests/ \
-        --cov=src \
+        src/pdfa_learning tests/ \
+        --cov=src/pdfa_learning \
         --cov-report=xml \
         --cov-report=html \
         --cov-report=term
@@ -101,7 +101,7 @@ test-all: ## run tests on every Python version with tox
 	tox
 
 coverage: ## check code coverage quickly with the default Python
-	coverage run --source src -m pytest
+	coverage run --source src/pdfa_learning -m pytest
 	coverage report -m
 	coverage html
 	$(BROWSER) htmlcov/index.html
@@ -119,12 +119,11 @@ release: dist ## package and upload a release
 	twine upload dist/*
 
 dist: clean ## builds source and wheel package
-	python setup.py sdist
-	python setup.py bdist_wheel
+	poetry build
 	ls -l dist
 
 install: clean ## install the package to the active Python's site-packages
-	python setup.py install
+	poetry install
 
 develop: clean ## install the package in development mode
-	pip install -e .
+	echo "Not supported by Poetry yet!"

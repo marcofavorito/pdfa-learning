@@ -3,8 +3,8 @@ from typing import Callable
 
 import graphviz
 
-from src.pdfa import PDFA
-from src.pdfa.helpers import ROUND_PRECISION
+from pdfa_learning.pdfa import PDFA
+from pdfa_learning.pdfa.helpers import ROUND_PRECISION
 
 
 def to_graphviz(
