@@ -1,0 +1,32 @@
+site_name: My Docs
+repo_name: 'marcofavorito/pdfa-learning'
+repo_url: https://github.com/marcofavorito/pdfa-learning
+
+nav:
+- Home: index.md
+- Build a PDFA: "notebooks/01-pdfa.ipynb"
+- Learn a PDFA using (Palmer & Goldberg, 2005): "notebooks/02-pdfa-learning-palmer.ipynb"
+- Learn a PDFA using (Balle et al., 2013): "notebooks/03-pdfa-learning-balle.ipynb"
+
+plugins:
+- mknotebooks:
+    execute: false
+    write_markdown: false
+    enable_default_jupyter_cell_styling: false
+    enable_default_pandas_dataframe_styling: false
+    #preamble: ""
+- search
+
+theme:
+  name: material
+
+markdown_extensions:
+- codehilite
+- pymdownx.arithmatex
+- pymdownx.snippets:
+    base_path: docs
+- markdown_include.include:
+    base_path: docs
+
+extra_javascript:
+- 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'

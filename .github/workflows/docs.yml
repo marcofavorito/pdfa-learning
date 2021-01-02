@@ -1,4 +1,4 @@
-name: lint
+name: docs
 
 on:
   push:
@@ -26,19 +26,5 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run:  pip install tox
-#    - name: Pylint
-#      run: tox -e pylint
-    - name: Code style check
-      run: |
-        tox -e black-check
-        tox -e isort-check
-        tox -e flake8
-        tox -e vulture
-    - name: Static type check
-      run: tox -e mypy
-    - name: Check copyright
-      run: tox -e check-copyright
-    - name: Misc checks
-      run: |
-        tox -e bandit
-        tox -e safety
+    - name: Generate Documentation
+      run: tox -e docs
