@@ -1,0 +1,1088 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.14">
+    
+    
+      
+        <title>Learn a PDFA using (Balle et al., 2013) - My Docs</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.d3202873.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../css/ansi-colours.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#pdfa-learning-balle-et-al-2013" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="My Docs" class="md-header-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            My Docs
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Learn a PDFA using (Balle et al., 2013)
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/marcofavorito/pdfa-learning/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marcofavorito/pdfa-learning
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="My Docs" class="md-nav__button md-logo" aria-label="My Docs">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    My Docs
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/marcofavorito/pdfa-learning/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    marcofavorito/pdfa-learning
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." title="Home" class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../01-pdfa/" title="Build a PDFA" class="md-nav__link">
+      Build a PDFA
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../02-pdfa-learning-palmer/" title="Learn a PDFA using (Palmer & Goldberg, 2005)" class="md-nav__link">
+      Learn a PDFA using (Palmer & Goldberg, 2005)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Learn a PDFA using (Balle et al., 2013)
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" title="Learn a PDFA using (Balle et al., 2013)" class="md-nav__link md-nav__link--active">
+      Learn a PDFA using (Balle et al., 2013)
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pdfa-learning-balle-et-al-2013" class="md-nav__link">
+    PDFA Learning (Balle et al., 2013)
+  </a>
+  
+    <nav class="md-nav" aria-label="PDFA Learning (Balle et al., 2013)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-with-1-state" class="md-nav__link">
+    Example with 1 state.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-with-2-states" class="md-nav__link">
+    Example with 2 states.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pdfa-learning-balle-et-al-2013" class="md-nav__link">
+    PDFA Learning (Balle et al., 2013)
+  </a>
+  
+    <nav class="md-nav" aria-label="PDFA Learning (Balle et al., 2013)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    Example
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-with-1-state" class="md-nav__link">
+    Example with 1 state.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-with-2-states" class="md-nav__link">
+    Example with 2 states.
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/marcofavorito/pdfa-learning/edit/master/docs/notebooks/03-pdfa-learning-balle.ipynb" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                  <h1>Learn a PDFA using (Balle et al., 2013)</h1>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var scriptElement = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    scriptElement.src = widgetRendererSrc;
+    document.body.appendChild(scriptElement);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h2 id="pdfa-learning-balle-et-al-2013">PDFA Learning (Balle et al., 2013)</h2>
+<p>In this notebook, we will show how to
+use the implementation of PDFA learning,
+as described in [2].</p>
+<p>In terms of APIs, the only things that change
+are the parameter <code>algorithm</code> to <code>learn_pdfa</code>
+(it must be <code>Algorithm.BALLE</code>)
+and the set of parameters.
+See <a href="https://github.com/marcofavorito/pdfa-learning/blob/master/src/pdfa_learning/learn_pdfa/balle/params.py"><code>pdfa_learning.learn_pdfa.balle.params.py</code></a>
+for all the details.</p>
+<h3 id="example">Example</h3>
+<p>Utility functions to display SVGs.
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+
+<span class="kn">from</span> <span class="nn">helpers</span> <span class="kn">import</span> <span class="n">render_automaton</span>
+<span class="kn">from</span> <span class="nn">pdfa_learning.learn_pdfa.base</span> <span class="kn">import</span> <span class="n">learn_pdfa</span><span class="p">,</span> <span class="n">Algorithm</span>
+<span class="kn">from</span> <span class="nn">pdfa_learning.learn_pdfa.utils.generator</span> <span class="kn">import</span> <span class="n">MultiprocessedGenerator</span><span class="p">,</span> <span class="n">SimpleGenerator</span>
+<span class="kn">from</span> <span class="nn">pdfa_learning.pdfa</span> <span class="kn">import</span> <span class="n">PDFA</span>
+</code></pre></div>
+
+
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h2 id="example-with-1-state">Example with 1 state.</h2>
+<p>Let's use the following automaton to generate samples.
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="n">p</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="n">automaton</span> <span class="o">=</span> <span class="n">PDFA</span><span class="p">(</span>
+    <span class="n">nb_states</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">alphabet_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">transition_dict</span><span class="o">=</span><span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)}</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">render_automaton</span><span class="p">(</span><span class="n">automaton</span><span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:36:50,713][graphviz.files][DEBUG] write 195 bytes to &#39;/tmp/tmp4krev1q6/output&#39;
+[2021-01-02 15:36:50,715][graphviz.backend][DEBUG] run [&#39;dot&#39;, &#39;-Kdot&#39;, &#39;-Tsvg&#39;, &#39;-O&#39;, &#39;output&#39;]
+</code>
+</pre>
+</div>
+</div>
+
+<div class="output_area" markdown="1">
+
+<div class="output_html rendered_html output_subarea ">
+<div style="display: block; margin-left: auto; margin-right: auto; width: 50%;white-space: nowrap"><svg height="82pt" viewBox="0.00 0.00 420.09 82.50" width="420pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 78.5)">
+<title>%3</title>
+<polygon fill="white" points="-4,4 -4,-78.5 416.09,-78.5 416.09,4 -4,4" stroke="transparent"/>
+<!-- fake -->
+<g class="node" id="node1">
+<title>fake</title>
+</g>
+<!-- 0 -->
+<g class="node" id="node2">
+<title>0</title>
+<ellipse cx="125.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-19.8">0</text>
+</g>
+<!-- fake&#45;&gt;0 -->
+<g class="edge" id="edge1">
+<title>fake-&gt;0</title>
+<path d="M61.34,-23.5C69.68,-23.5 78.84,-23.5 87.52,-23.5" fill="none" stroke="black" stroke-width="2"/>
+<polygon fill="black" points="87.79,-27 97.79,-23.5 87.79,-20 87.79,-27" stroke="black" stroke-width="2"/>
+</g>
+<!-- 0&#45;&gt;0 -->
+<g class="edge" id="edge2">
+<title>0-&gt;0</title>
+<path d="M117.24,-40.91C115.77,-50.59 118.39,-59.5 125.09,-59.5 129.28,-59.5 131.88,-56.02 132.88,-51.04" fill="none" stroke="black"/>
+<polygon fill="black" points="136.38,-50.93 132.95,-40.91 129.38,-50.88 136.38,-50.93" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-63.3">0, 0.3</text>
+</g>
+<!-- 1 -->
+<g class="node" id="node3">
+<title>1</title>
+<ellipse cx="256.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="256.09" y="-19.8">1</text>
+</g>
+<!-- 0&#45;&gt;1 -->
+<g class="edge" id="edge3">
+<title>0-&gt;1</title>
+<path d="M152.2,-23.5C171.35,-23.5 197.59,-23.5 218.78,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="219.03,-27 229.03,-23.5 219.03,-20 219.03,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="190.59" y="-27.3">1, 0.7</text>
+</g>
+<!-- &#45;1 -->
+<g class="node" id="node4">
+<title>-1</title>
+<ellipse cx="388.59" cy="-23.5" fill="none" rx="19.5" ry="19.5" stroke="black"/>
+<ellipse cx="388.59" cy="-23.5" fill="none" rx="23.5" ry="23.5" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="388.59" y="-19.8">-1</text>
+</g>
+<!-- 1&#45;&gt;&#45;1 -->
+<g class="edge" id="edge4">
+<title>1-&gt;-1</title>
+<path d="M283.19,-23.5C303.77,-23.5 332.6,-23.5 354.75,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="355.03,-27 365.03,-23.5 355.03,-20 355.03,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="324.09" y="-27.3">-1, 1.0</text>
+</g>
+</g>
+</svg></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+Now we will run the PAC learning algorithm
+to learn the above automaton.</p>
+<p>With respect to the previous guide,
+we have the following parameters:</p>
+<ul>
+<li><code>nb_samples</code>is the number of samples.</li>
+<li><code>delta</code>: is the probability of failure.</li>
+<li><code>n</code>: is the upperbound on the number of states.
+</div>
+</div></li>
+</ul>
+</div>
+<div class="cell border-box-sizing code_cell rendered"></div>
+</div>
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">MultiprocessedGenerator</span><span class="p">(</span><span class="n">SimpleGenerator</span><span class="p">(</span><span class="n">automaton</span><span class="p">),</span> <span class="n">nb_processes</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">pdfa</span> <span class="o">=</span> <span class="n">learn_pdfa</span><span class="p">(</span>
+    <span class="n">algorithm</span><span class="o">=</span><span class="n">Algorithm</span><span class="o">.</span><span class="n">BALLE</span><span class="p">,</span>
+    <span class="n">sample_generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span>
+    <span class="n">alphabet_size</span><span class="o">=</span><span class="n">automaton</span><span class="o">.</span><span class="n">alphabet_size</span><span class="p">,</span>
+    <span class="n">nb_samples</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span>
+    <span class="n">delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:36:54,341][pdfa_learning.learn_pdfa][INFO] Parameters: (&#34;{&#39;alphabet_size&#39;: 2,\n&#34;
+ &#34; &#39;dataset_size&#39;: None,\n&#34;
+ &#34; &#39;delta&#39;: 0.1,\n&#34;
+ &#34; &#39;epsilon&#39;: 0.1,\n&#34;
+ &#34; &#39;n&#39;: 10,\n&#34;
+ &#34; &#39;nb_samples&#39;: 20000,\n&#34;
+ &#34; &#39;sample_generator&#39;: &#34;
+ &#39;&lt;pdfa_learning.learn_pdfa.utils.generator.MultiprocessedGenerator object at &#39;
+ &#39;0x7f5410c6bf50&gt;,\n&#39;
+ &#34; &#39;with_ground&#39;: False,\n&#34;
+ &#34; &#39;with_infty_norm&#39;: True,\n&#34;
+ &#34; &#39;with_smoothing&#39;: False}&#34;)
+[2021-01-02 15:36:54,343][pdfa_learning.learn_pdfa][INFO] Generating the sample.
+[2021-01-02 15:36:54,737][pdfa_learning.learn_pdfa][INFO] Average trace length: 2.4088.
+[2021-01-02 15:36:54,738][pdfa_learning.learn_pdfa][INFO] Populate root multiset.
+[2021-01-02 15:36:54,755][pdfa_learning.learn_pdfa][INFO] Iteration 0
+[2021-01-02 15:36:54,756][pdfa_learning.learn_pdfa][INFO] Iteration 1
+[2021-01-02 15:36:54,757][pdfa_learning.learn_pdfa][INFO] Iteration 2
+[2021-01-02 15:36:54,758][pdfa_learning.learn_pdfa][INFO] Biggest multiset has cardinality 0, done
+</code>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1">
+The learned automaton is:
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Transitions: &quot;</span><span class="p">)</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">pdfa</span><span class="o">.</span><span class="n">transitions</span><span class="p">)</span>
+<span class="n">render_automaton</span><span class="p">(</span><span class="n">pdfa</span><span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:36:57,832][graphviz.files][DEBUG] write 201 bytes to &#39;/tmp/tmpmq4hjn0x/output&#39;
+[2021-01-02 15:36:57,834][graphviz.backend][DEBUG] run [&#39;dot&#39;, &#39;-Kdot&#39;, &#39;-Tsvg&#39;, &#39;-O&#39;, &#39;output&#39;]
+</code>
+</pre>
+</div>
+</div>
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>Transitions: 
+{(0, -1, 0.0, -1), (1, -1, 1.0, -1), (0, 0, 0.2852, 0), (0, 1, 0.7148, 1)}
+</code>
+</pre>
+</div>
+</div>
+
+<div class="output_area" markdown="1">
+
+<div class="output_html rendered_html output_subarea ">
+<div style="display: block; margin-left: auto; margin-right: auto; width: 50%;white-space: nowrap"><svg height="82pt" viewBox="0.00 0.00 447.09 82.50" width="447pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 78.5)">
+<title>%3</title>
+<polygon fill="white" points="-4,4 -4,-78.5 443.09,-78.5 443.09,4 -4,4" stroke="transparent"/>
+<!-- fake -->
+<g class="node" id="node1">
+<title>fake</title>
+</g>
+<!-- 0 -->
+<g class="node" id="node2">
+<title>0</title>
+<ellipse cx="125.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-19.8">0</text>
+</g>
+<!-- fake&#45;&gt;0 -->
+<g class="edge" id="edge1">
+<title>fake-&gt;0</title>
+<path d="M61.34,-23.5C69.68,-23.5 78.84,-23.5 87.52,-23.5" fill="none" stroke="black" stroke-width="2"/>
+<polygon fill="black" points="87.79,-27 97.79,-23.5 87.79,-20 87.79,-27" stroke="black" stroke-width="2"/>
+</g>
+<!-- 0&#45;&gt;0 -->
+<g class="edge" id="edge3">
+<title>0-&gt;0</title>
+<path d="M117.24,-40.91C115.77,-50.59 118.39,-59.5 125.09,-59.5 129.28,-59.5 131.88,-56.02 132.88,-51.04" fill="none" stroke="black"/>
+<polygon fill="black" points="136.38,-50.93 132.95,-40.91 129.38,-50.88 136.38,-50.93" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-63.3">0, 0.2852</text>
+</g>
+<!-- 1 -->
+<g class="node" id="node3">
+<title>1</title>
+<ellipse cx="283.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="283.09" y="-19.8">1</text>
+</g>
+<!-- 0&#45;&gt;1 -->
+<g class="edge" id="edge2">
+<title>0-&gt;1</title>
+<path d="M152.21,-23.5C177.85,-23.5 217.2,-23.5 245.87,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="245.9,-27 255.9,-23.5 245.9,-20 245.9,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="204.09" y="-27.3">1, 0.7148</text>
+</g>
+<!-- &#45;1 -->
+<g class="node" id="node4">
+<title>-1</title>
+<ellipse cx="415.59" cy="-23.5" fill="none" rx="19.5" ry="19.5" stroke="black"/>
+<ellipse cx="415.59" cy="-23.5" fill="none" rx="23.5" ry="23.5" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="415.59" y="-19.8">-1</text>
+</g>
+<!-- 1&#45;&gt;&#45;1 -->
+<g class="edge" id="edge4">
+<title>1-&gt;-1</title>
+<path d="M310.19,-23.5C330.77,-23.5 359.6,-23.5 381.75,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="382.03,-27 392.03,-23.5 382.03,-20 382.03,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="351.09" y="-27.3">-1, 1.0</text>
+</g>
+</g>
+</svg></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h2 id="example-with-2-states">Example with 2 states.</h2>
+<p>Now let's try to learn the following automaton:
+</div>
+</div></p>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="n">p1</span> <span class="o">=</span> <span class="mf">0.4</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="mf">0.7</span>
+<span class="n">automaton</span> <span class="o">=</span> <span class="n">PDFA</span><span class="p">(</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="p">{</span>
+        <span class="mi">0</span><span class="p">:</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p1</span><span class="p">),</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p1</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="mi">1</span><span class="p">:</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">p2</span><span class="p">),</span>
+            <span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">p2</span><span class="p">),</span>
+        <span class="p">},</span>
+        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span>
+            <span class="o">-</span><span class="mi">1</span><span class="p">:</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+<span class="p">)</span>
+<span class="n">render_automaton</span><span class="p">(</span><span class="n">automaton</span><span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:17:37,396][graphviz.files][DEBUG] write 248 bytes to &#39;/tmp/tmpguqglne2/output&#39;
+[2021-01-02 15:17:37,397][graphviz.backend][DEBUG] run [&#39;dot&#39;, &#39;-Kdot&#39;, &#39;-Tsvg&#39;, &#39;-O&#39;, &#39;output&#39;]
+</code>
+</pre>
+</div>
+</div>
+
+<div class="output_area" markdown="1">
+
+<div class="output_html rendered_html output_subarea ">
+<div style="display: block; margin-left: auto; margin-right: auto; width: 50%;white-space: nowrap"><svg height="117pt" viewBox="0.00 0.00 551.09 117.50" width="551pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 113.5)">
+<title>%3</title>
+<polygon fill="white" points="-4,4 -4,-113.5 547.09,-113.5 547.09,4 -4,4" stroke="transparent"/>
+<!-- fake -->
+<g class="node" id="node1">
+<title>fake</title>
+</g>
+<!-- 0 -->
+<g class="node" id="node2">
+<title>0</title>
+<ellipse cx="125.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-19.8">0</text>
+</g>
+<!-- fake&#45;&gt;0 -->
+<g class="edge" id="edge1">
+<title>fake-&gt;0</title>
+<path d="M61.34,-23.5C69.68,-23.5 78.84,-23.5 87.52,-23.5" fill="none" stroke="black" stroke-width="2"/>
+<polygon fill="black" points="87.79,-27 97.79,-23.5 87.79,-20 87.79,-27" stroke="black" stroke-width="2"/>
+</g>
+<!-- 1 -->
+<g class="node" id="node3">
+<title>1</title>
+<ellipse cx="256.09" cy="-58.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="256.09" y="-54.8">1</text>
+</g>
+<!-- 0&#45;&gt;1 -->
+<g class="edge" id="edge2">
+<title>0-&gt;1</title>
+<path d="M150.36,-30.08C170.36,-35.51 198.95,-43.27 221.21,-49.31" fill="none" stroke="black"/>
+<polygon fill="black" points="220.37,-52.7 230.94,-51.94 222.2,-45.95 220.37,-52.7" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="190.59" y="-49.3">0, 0.4</text>
+</g>
+<!-- 2 -->
+<g class="node" id="node4">
+<title>2</title>
+<ellipse cx="387.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="387.09" y="-19.8">2</text>
+</g>
+<!-- 0&#45;&gt;2 -->
+<g class="edge" id="edge3">
+<title>0-&gt;2</title>
+<path d="M151.89,-21.26C172.71,-19.57 202.76,-17.39 229.09,-16.5 253.08,-15.68 259.11,-15.68 283.09,-16.5 305.42,-17.26 330.41,-18.93 350.19,-20.46" fill="none" stroke="black"/>
+<polygon fill="black" points="350.05,-23.96 360.3,-21.26 350.61,-16.98 350.05,-23.96" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="256.09" y="-20.3">1, 0.6</text>
+</g>
+<!-- 1&#45;&gt;1 -->
+<g class="edge" id="edge5">
+<title>1-&gt;1</title>
+<path d="M244.84,-75.16C242.34,-85.12 246.09,-94.5 256.09,-94.5 262.5,-94.5 266.34,-90.65 267.62,-85.27" fill="none" stroke="black"/>
+<polygon fill="black" points="271.11,-85.06 267.34,-75.16 264.12,-85.25 271.11,-85.06" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="256.09" y="-98.3">1, 0.7</text>
+</g>
+<!-- 1&#45;&gt;2 -->
+<g class="edge" id="edge4">
+<title>1-&gt;2</title>
+<path d="M281.36,-51.92C301.36,-46.49 329.95,-38.73 352.21,-32.69" fill="none" stroke="black"/>
+<polygon fill="black" points="353.2,-36.05 361.94,-30.05 351.37,-29.29 353.2,-36.05" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="321.59" y="-49.3">0, 0.3</text>
+</g>
+<!-- &#45;1 -->
+<g class="node" id="node5">
+<title>-1</title>
+<ellipse cx="519.59" cy="-23.5" fill="none" rx="19.5" ry="19.5" stroke="black"/>
+<ellipse cx="519.59" cy="-23.5" fill="none" rx="23.5" ry="23.5" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="519.59" y="-19.8">-1</text>
+</g>
+<!-- 2&#45;&gt;&#45;1 -->
+<g class="edge" id="edge6">
+<title>2-&gt;-1</title>
+<path d="M414.19,-23.5C434.77,-23.5 463.6,-23.5 485.75,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="486.03,-27 496.03,-23.5 486.03,-20 486.03,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="455.09" y="-27.3">-1, 1.0</text>
+</g>
+</g>
+</svg></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="codehilite"><pre><span></span><code><span class="n">generator</span> <span class="o">=</span> <span class="n">MultiprocessedGenerator</span><span class="p">(</span><span class="n">SimpleGenerator</span><span class="p">(</span><span class="n">automaton</span><span class="p">),</span> <span class="n">nb_processes</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span>
+
+<span class="n">pdfa</span> <span class="o">=</span> <span class="n">learn_pdfa</span><span class="p">(</span>
+    <span class="n">algorithm</span><span class="o">=</span><span class="n">Algorithm</span><span class="o">.</span><span class="n">BALLE</span><span class="p">,</span>
+    <span class="n">sample_generator</span><span class="o">=</span><span class="n">generator</span><span class="p">,</span>
+    <span class="n">alphabet_size</span><span class="o">=</span><span class="n">automaton</span><span class="o">.</span><span class="n">alphabet_size</span><span class="p">,</span>
+    <span class="n">nb_samples</span><span class="o">=</span><span class="mi">20000</span><span class="p">,</span>
+    <span class="n">delta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:37:10,974][pdfa_learning.learn_pdfa][INFO] Parameters: (&#34;{&#39;alphabet_size&#39;: 2,\n&#34;
+ &#34; &#39;dataset_size&#39;: None,\n&#34;
+ &#34; &#39;delta&#39;: 0.1,\n&#34;
+ &#34; &#39;epsilon&#39;: 0.1,\n&#34;
+ &#34; &#39;n&#39;: 10,\n&#34;
+ &#34; &#39;nb_samples&#39;: 20000,\n&#34;
+ &#34; &#39;sample_generator&#39;: &#34;
+ &#39;&lt;pdfa_learning.learn_pdfa.utils.generator.MultiprocessedGenerator object at &#39;
+ &#39;0x7f53fd4d4590&gt;,\n&#39;
+ &#34; &#39;with_ground&#39;: False,\n&#34;
+ &#34; &#39;with_infty_norm&#39;: True,\n&#34;
+ &#34; &#39;with_smoothing&#39;: False}&#34;)
+[2021-01-02 15:37:10,976][pdfa_learning.learn_pdfa][INFO] Generating the sample.
+[2021-01-02 15:37:11,348][pdfa_learning.learn_pdfa][INFO] Average trace length: 2.4088.
+[2021-01-02 15:37:11,348][pdfa_learning.learn_pdfa][INFO] Populate root multiset.
+[2021-01-02 15:37:11,367][pdfa_learning.learn_pdfa][INFO] Iteration 0
+[2021-01-02 15:37:11,367][pdfa_learning.learn_pdfa][INFO] Iteration 1
+[2021-01-02 15:37:11,368][pdfa_learning.learn_pdfa][INFO] Iteration 2
+[2021-01-02 15:37:11,368][pdfa_learning.learn_pdfa][INFO] Biggest multiset has cardinality 0, done
+</code>
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+</div>
+</div>
+<div class="codehilite"><pre><span></span><code><span class="n">render_automaton</span><span class="p">(</span><span class="n">pdfa</span><span class="p">)</span>
+</code></pre></div>
+
+
+</div>
+
+<div class="output_wrapper" markdown="1">
+<div class="output" markdown="1">
+
+
+<div class="output_area" markdown="1">
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+<code>[2021-01-02 15:37:13,469][graphviz.files][DEBUG] write 201 bytes to &#39;/tmp/tmp41alblmt/output&#39;
+[2021-01-02 15:37:13,471][graphviz.backend][DEBUG] run [&#39;dot&#39;, &#39;-Kdot&#39;, &#39;-Tsvg&#39;, &#39;-O&#39;, &#39;output&#39;]
+</code>
+</pre>
+</div>
+</div>
+
+<div class="output_area" markdown="1">
+
+<div class="output_html rendered_html output_subarea ">
+<div style="display: block; margin-left: auto; margin-right: auto; width: 50%;white-space: nowrap"><svg height="82pt" viewBox="0.00 0.00 447.09 82.50" width="447pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g class="graph" id="graph0" transform="scale(1 1) rotate(0) translate(4 78.5)">
+<title>%3</title>
+<polygon fill="white" points="-4,4 -4,-78.5 443.09,-78.5 443.09,4 -4,4" stroke="transparent"/>
+<!-- fake -->
+<g class="node" id="node1">
+<title>fake</title>
+</g>
+<!-- 0 -->
+<g class="node" id="node2">
+<title>0</title>
+<ellipse cx="125.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-19.8">0</text>
+</g>
+<!-- fake&#45;&gt;0 -->
+<g class="edge" id="edge1">
+<title>fake-&gt;0</title>
+<path d="M61.34,-23.5C69.68,-23.5 78.84,-23.5 87.52,-23.5" fill="none" stroke="black" stroke-width="2"/>
+<polygon fill="black" points="87.79,-27 97.79,-23.5 87.79,-20 87.79,-27" stroke="black" stroke-width="2"/>
+</g>
+<!-- 0&#45;&gt;0 -->
+<g class="edge" id="edge3">
+<title>0-&gt;0</title>
+<path d="M117.24,-40.91C115.77,-50.59 118.39,-59.5 125.09,-59.5 129.28,-59.5 131.88,-56.02 132.88,-51.04" fill="none" stroke="black"/>
+<polygon fill="black" points="136.38,-50.93 132.95,-40.91 129.38,-50.88 136.38,-50.93" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="125.09" y="-63.3">0, 0.2852</text>
+</g>
+<!-- 1 -->
+<g class="node" id="node3">
+<title>1</title>
+<ellipse cx="283.09" cy="-23.5" fill="none" rx="27" ry="18" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="283.09" y="-19.8">1</text>
+</g>
+<!-- 0&#45;&gt;1 -->
+<g class="edge" id="edge2">
+<title>0-&gt;1</title>
+<path d="M152.21,-23.5C177.85,-23.5 217.2,-23.5 245.87,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="245.9,-27 255.9,-23.5 245.9,-20 245.9,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="204.09" y="-27.3">1, 0.7148</text>
+</g>
+<!-- &#45;1 -->
+<g class="node" id="node4">
+<title>-1</title>
+<ellipse cx="415.59" cy="-23.5" fill="none" rx="19.5" ry="19.5" stroke="black"/>
+<ellipse cx="415.59" cy="-23.5" fill="none" rx="23.5" ry="23.5" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="415.59" y="-19.8">-1</text>
+</g>
+<!-- 1&#45;&gt;&#45;1 -->
+<g class="edge" id="edge4">
+<title>1-&gt;-1</title>
+<path d="M310.19,-23.5C330.77,-23.5 359.6,-23.5 381.75,-23.5" fill="none" stroke="black"/>
+<polygon fill="black" points="382.03,-27 392.03,-23.5 382.03,-20 382.03,-27" stroke="black"/>
+<text font-family="Times,serif" font-size="14.00" text-anchor="middle" x="351.09" y="-27.3">-1, 1.0</text>
+</g>
+</g>
+</svg></div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+<div class="cell border-box-sizing text_cell rendered">
+<p><div class="inner_cell" markdown="1">
+<div class="text_cell_render border-box-sizing rendered_html" markdown="1"></p>
+<h2 id="references">References</h2>
+<ul>
+<li>[1] Balle, Borja, Jorge Castro, and Ricard Gavaldà.
+  "Learning probabilistic automata: A study in state distinguishability."
+  Theoretical Computer Science 473 (2013): 46-60.
+</div>
+</div></li>
+</ul>
+</div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../02-pdfa-learning-palmer/" title="Learn a PDFA using (Palmer & Goldberg, 2005)" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Learn a PDFA using (Palmer & Goldberg, 2005)
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.2d1db4bd.min.js"></script>
+      <script src="../../assets/javascripts/bundle.6627ddf3.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
