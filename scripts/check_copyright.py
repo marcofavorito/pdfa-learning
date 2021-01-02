@@ -93,7 +93,7 @@ if __name__ == "__main__":
     python_files = filter(
         lambda x: x not in exclude_files,
         itertools.chain(
-            Path("pdfa-learning").glob("**/*.py"),
+            Path("src/pdfa_learning").glob("**/*.py"),
             Path("tests").glob("**/*.py"),
             Path("scripts").glob("**/*.py"),
         ),
