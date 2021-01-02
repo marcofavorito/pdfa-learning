@@ -53,7 +53,6 @@ class PalmerParams:
     m0_max_debug: Optional[int] = None
     n1_max_debug: Optional[int] = None
     n2_max_debug: Optional[int] = None
-    with_smoothing: bool = False
 
     def __post_init__(self):
         """Validate inputs."""

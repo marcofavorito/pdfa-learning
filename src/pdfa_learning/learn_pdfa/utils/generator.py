@@ -26,7 +26,6 @@ from multiprocessing import Pool
 from typing import Callable, Sequence
 
 from pdfa_learning.pdfa import PDFA
-from pdfa_learning.pdfa.base import FINAL_SYMBOL
 from pdfa_learning.types import Word
 
 
@@ -54,11 +53,9 @@ class SimpleGenerator(Generator):
         """Sample a trace."""
         return self._pdfa.sample()
 
-    def sample(self, n: int = 1, with_final: bool = False) -> Sequence[Word]:
+    def sample(self, n: int = 1) -> Sequence[Word]:
         """Generate a sample of size n."""
-        return [
-            tuple(self()) + ((FINAL_SYMBOL,) if with_final else ()) for _ in range(n)
-        ]
+        return [tuple(self()) for _ in range(n)]
 
 
 class MultiprocessedGenerator(Generator):

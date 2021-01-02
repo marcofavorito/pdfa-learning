@@ -32,7 +32,7 @@ from pdfa_learning.types import Word
 @dataclass(frozen=True, repr=False)
 class BalleParams:
     """
-    Parameters for the (Balel et al., 2013) learning algorithm.
+    Parameters for the (Balle et al., 2013) learning algorithm.
 
     sample_generator: the sample generator from the true PDFA.
     alphabet_size: the alphabet size.
