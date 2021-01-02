@@ -1,13 +1,12 @@
-"""Common utilities for the learning PDFA algorithm."""
+"""Utilities for the generation of samples from a PDFA."""
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
 from math import ceil
 from multiprocessing import Pool
-from typing import Callable, Optional, Sequence
+from typing import Callable, Sequence
 
-from pdfa_learning.helpers.base import assert_
 from pdfa_learning.pdfa import PDFA
-from pdfa_learning.pdfa.types import Word
+from pdfa_learning.pdfa.base import FINAL_SYMBOL
+from pdfa_learning.types import Word
 
 
 class Generator(ABC):
@@ -34,9 +33,11 @@ class SimpleGenerator(Generator):
         """Sample a trace."""
         return self._pdfa.sample()
 
-    def sample(self, n: int = 1) -> Sequence[Word]:
+    def sample(self, n: int = 1, with_final: bool = False) -> Sequence[Word]:
         """Generate a sample of size n."""
-        return [self() for _ in range(n)]
+        return [
+            tuple(self()) + ((FINAL_SYMBOL,) if with_final else ()) for _ in range(n)
+        ]
 
 
 class MultiprocessedGenerator(Generator):
@@ -77,36 +78,3 @@ class MultiprocessedGenerator(Generator):
 
         nb_samples_to_drop = len(sample) - n
         return sample[: len(sample) - nb_samples_to_drop]
-
-
-@dataclass(frozen=True)
-class _Params:
-    """
-    Parameters for the learning algorithm.
-
-    sample_generator: the sample generator from the true PDFA.
-    alphabet_size: the alphabet size.
-    epsilon: the tolerance error.
-    delta: the failure probability for the subgraph construction.
-    delta: the failure probability for the probability estimation.
-    mu: the distinguishability factor.
-    n: the upper bound of the number of states.
-    """
-
-    sample_generator: Generator
-    alphabet_size: int
-    epsilon: float = 0.05
-    delta_1: float = 0.1
-    delta_2: float = 0.1
-    mu: float = 0.4
-    n: int = 3
-    # debug parameters - force upper bounds
-    m0_max_debug: Optional[int] = None
-    n1_max_debug: Optional[int] = None
-    n2_max_debug: Optional[int] = None
-
-    def __post_init__(self):
-        assert_(
-            self.delta_1 + self.delta_2 <= 1.0,
-            "Sum of two probabilities cannot be greater than 1.",
-        )

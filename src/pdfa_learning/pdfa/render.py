@@ -1,22 +1,35 @@
 """Module that implements rendering utilities."""
-from typing import Callable
+from typing import Callable, Dict, Set
 
 import graphviz
 
 from pdfa_learning.pdfa import PDFA
-from pdfa_learning.pdfa.helpers import ROUND_PRECISION
+from pdfa_learning.pdfa.helpers import (
+    PROB_LOWER_BOUND,
+    ROUND_PRECISION,
+    filter_transition_function,
+)
+from pdfa_learning.types import Character
 
 
 def to_graphviz(
     pdfa: PDFA,
     state2str: Callable[[int], str] = lambda x: str(x),
     char2str: Callable[[int], str] = lambda x: str(x),
+    round_precision: int = ROUND_PRECISION,
+    lower_bound: float = PROB_LOWER_BOUND,
+    with_prob: bool = True,
 ) -> graphviz.Digraph:
     """Transform a PDFA to Graphviz."""
     graph = graphviz.Digraph(format="svg")
     graph.node("fake", style="invisible")
+    graph.attr(rankdir="LR")
 
-    for state in pdfa.states:
+    states, filtered_transition_function = filter_transition_function(
+        pdfa.transition_dict, lower_bound
+    )
+
+    for state in states:
         if state == pdfa.initial_state:
             graph.node(state2str(state), root="true")
         else:
@@ -25,11 +38,46 @@ def to_graphviz(
 
     graph.edge("fake", state2str(pdfa.initial_state), style="bold")
 
-    for (start, char, prob, end) in pdfa.transitions:
-        graph.edge(
-            state2str(start),
-            state2str(end),
-            label=f"{char2str(char)}, {round(prob, ROUND_PRECISION)}",
-        )
+    for start, outgoing in filtered_transition_function.items():
+        for char, (end, prob) in outgoing.items():
+            new_prob = round(prob, round_precision)
+            if new_prob > lower_bound:
+                label = f"{char2str(char)}"
+                label += f", {new_prob}" if with_prob else ""
+                graph.edge(
+                    state2str(start),
+                    state2str(end),
+                    label=label,
+                )
+
+    return graph
+
+
+# TODo refactor
+def to_graphviz_from_graph(
+    vertices: Set[int],
+    transitions: Dict[int, Dict[Character, int]],
+    state2str: Callable[[int], str] = lambda x: str(x),
+    char2str: Callable[[int], str] = lambda x: str(x),
+):
+    """To graphviz from graph."""
+    graph = graphviz.Digraph(format="svg")
+    graph.node("fake", style="invisible")
+
+    for state in vertices:
+        if state == 0:
+            graph.node(state2str(state), root="true")
+        else:
+            graph.node(state2str(state))
+
+    graph.edge("fake", state2str(0), style="bold")
+
+    for start, char2end in transitions.items():
+        for char, end in char2end.items():
+            graph.edge(
+                state2str(start),
+                state2str(end),
+                label=f"{char2str(char)}",
+            )
 
     return graph

@@ -6,12 +6,12 @@ from math import ceil, log
 from typing import Dict, Optional, Set, Tuple
 
 from pdfa_learning.learn_pdfa import logger
-from pdfa_learning.learn_pdfa.common import _Params
+from pdfa_learning.learn_pdfa.palmer.params import PalmerParams
 from pdfa_learning.pdfa import PDFA
-from pdfa_learning.pdfa.types import TransitionFunctionDict
+from pdfa_learning.types import TransitionFunctionDict
 
 
-def _sample_size(params: _Params) -> int:
+def _sample_size(params: PalmerParams) -> int:
     eps = params.epsilon
     s = params.alphabet_size
     n = params.n
@@ -25,7 +25,7 @@ def _sample_size(params: _Params) -> int:
 
 
 def learn_probabilities(
-    graph: Tuple[Set[int], Dict[int, Dict[int, int]]], params: _Params
+    graph: Tuple[Set[int], Dict[int, Dict[int, int]]], params: PalmerParams
 ) -> PDFA:
     """
     Learn the probabilities of the PDFA.
@@ -84,8 +84,6 @@ def learn_probabilities(
             prob = gammas.get(q, {}).get(sigma, 0.0)
             transition_dict[q][sigma] = (q_prime, prob)
 
-    logger.info("Removing final state from the set of vertices.")
-    vertices.remove(len(vertices) - 1)
     logger.info(f"Computed vertices: {pprint.pformat(vertices)}")
     logger.info(f"Computed transition dictionary: {pprint.pformat(transition_dict)}")
 
