@@ -64,7 +64,7 @@ class BaseTestLearnPDFA:
     ALPHABET_LEN = 3
     OVERWRITE_CONFIG: Dict = {}
     WITH_SMOOTHING = False
-    RTOL = 0.1
+    RTOL = 0.15
 
     @classmethod
     @abstractmethod
