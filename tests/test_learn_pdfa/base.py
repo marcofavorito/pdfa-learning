@@ -63,7 +63,6 @@ class BaseTestLearnPDFA:
     CONFIG: Dict = BALLE_CONFIG
     ALPHABET_LEN = 3
     OVERWRITE_CONFIG: Dict = {}
-    WITH_SMOOTHING = False
     RTOL = 0.15
 
     @classmethod
@@ -84,7 +83,6 @@ class BaseTestLearnPDFA:
         cls.actual = learn_pdfa(
             sample_generator=generator,
             alphabet_size=cls.expected.alphabet_size,
-            with_smoothing=cls.WITH_SMOOTHING,
             **config
         )
 
