@@ -3,7 +3,36 @@ name = "pdfa-learning"
 version = "0.1.0"
 description = "A Python project template."
 authors = ["MarcoFavorito <marco.favorito@gmail.com>"]
-license = "LGPL-3.0-or-later"
+icense = "LGPL-3.0-or-later"
+readme = "README.md"
+homepage = "https://marcofavorito.me/pdfa-learning"
+repository = "https://github.com/marcofavorito/pdfa-learning.git"
+documentation = "https://marcofavorito.me/pdfa-learning"
+keywords = [
+    "probabilistic finite automata",
+    "PDFA",
+    "learning probabilistic finite automata",
+    "probably approximately correct learning",
+    "PAC-learning of PDFA",
+]
+classifiers = [
+    'Development Status :: 2 - Pre-Alpha',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: GNU Lesser General Public License v3 or later (LGPLv3+)',
+    'Natural Language :: English',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+]
+#packages = []
+include = []
+
+#[tool.poetry.scripts]
+#script_name = 'path/to/script'
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/marcofavorito/pdfa-learning/issues"
+"Pull Requests" = "https://github.com/marcofavorito/pdfa-learning/pulls"
 
 [tool.poetry.dependencies]
 python = "^3.7"
