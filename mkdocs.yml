@@ -4,8 +4,17 @@ repo_url: https://github.com/marcofavorito/pdfa-learning
 
 nav:
 - Home: index.md
+- Build a PDFA: "notebooks/01-pdfa.ipynb"
+- Learn a PDFA using (Palmer & Goldberg, 2005): "notebooks/02-pdfa-learning-palmer.ipynb"
+- Learn a PDFA using (Balle et al., 2013): "notebooks/03-pdfa-learning-balle.ipynb"
 
 plugins:
+- mknotebooks:
+    execute: false
+    write_markdown: false
+    enable_default_jupyter_cell_styling: false
+    enable_default_pandas_dataframe_styling: false
+    #preamble: ""
 - search
 
 theme:
@@ -14,6 +23,8 @@ theme:
 markdown_extensions:
 - codehilite
 - pymdownx.arithmatex
+- pymdownx.snippets:
+    base_path: docs
 - markdown_include.include:
     base_path: docs
 
