@@ -9,6 +9,7 @@ license = "LGPL-3.0-or-later"
 python = "^3.7"
 numpy = "^1.19.4"
 graphviz = "^0.16"
+hypothesis = "^5.43.5"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.0.1"

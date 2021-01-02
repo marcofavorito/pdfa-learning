@@ -19,4 +19,10 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with pdfa-learning.  If not, see <https://www.gnu.org/licenses/>.
 #
-"""Tests for the project."""
+"""Types for the package PDFA."""
+from typing import Dict, Sequence, Tuple
+
+State = int
+Character = int
+Word = Sequence[Character]
+TransitionFunctionDict = Dict[State, Dict[Character, Tuple[State, float]]]

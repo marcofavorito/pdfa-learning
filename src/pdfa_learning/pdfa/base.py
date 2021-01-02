@@ -1,3 +1,24 @@
+# -*- coding: utf-8 -*-
+#
+# Copyright 2020 Marco Favorito
+#
+# ------------------------------
+#
+# This file is part of pdfa-learning.
+#
+# pdfa-learning is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Lesser General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# pdfa-learning is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Lesser General Public License for more details.
+#
+# You should have received a copy of the GNU Lesser General Public License
+# along with pdfa-learning.  If not, see <https://www.gnu.org/licenses/>.
+#
 """Base module of the PDFA package."""
 
 from dataclasses import dataclass
@@ -7,13 +28,15 @@ import numpy as np
 
 from pdfa_learning.helpers.base import assert_
 from pdfa_learning.pdfa.helpers import (
+    FINAL_STATE,
+    FINAL_SYMBOL,
     _check_ergodicity,
     _check_is_legal_character,
     _check_is_legal_state,
     _check_is_legal_word,
     _check_transitions_are_legal,
 )
-from pdfa_learning.pdfa.types import Character, State, TransitionFunctionDict, Word
+from pdfa_learning.types import Character, State, TransitionFunctionDict, Word
 
 
 @dataclass(frozen=True)
@@ -24,7 +47,8 @@ class PDFA:
     - The set of states is the set of integers {0, ..., nb_states - 1} (nb_states > 0)
     - The alphabet is the set of integers {0, ..., alphabet_size - 1}
     - The initial state is always 0
-    - The final state is always "nb_states"
+    - The final state is always -1
+    - The final symbol is always -1
     - The transition function is a nested dictionary:
         - at the first level, we have states as keys and the dict of outgoing transition_dict as values
         - a dict of outgoing transition_dict has characters as keys and a tuple of next state and probability
@@ -94,7 +118,12 @@ class PDFA:
     @property
     def final_state(self) -> State:
         """Get the final state."""
-        return self.nb_states
+        return FINAL_STATE
+
+    @property
+    def final_symbol(self) -> State:
+        """Get the final symbol."""
+        return FINAL_SYMBOL
 
     @property
     def states(self) -> Set[State]:
@@ -119,14 +148,15 @@ class PDFA:
         result = 1.0
         current_state = self.initial_state
         for character in word:
-            if current_state is None or current_state == self.final_state:
-                result = 0.0
-                break
+            if current_state is None:
+                return 0.0
+
             next_state, probability = self.transition_dict.get(current_state, {}).get(
                 character, (None, 0.0)
             )
             current_state = next_state
             result *= probability
+
         return 0.0 if current_state != self.final_state else result
 
     def sample(self) -> Word:

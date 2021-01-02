@@ -19,33 +19,34 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with pdfa-learning.  If not, see <https://www.gnu.org/licenses/>.
 #
-"""Base module for the learn pdfa implementation."""
-from enum import Enum
-from typing import Callable, Dict
-
-from pdfa_learning.learn_pdfa.balle.core import learn_pdfa as balle_learn_pdfa
-from pdfa_learning.learn_pdfa.palmer.core import learn_pdfa as palmer_learn_pdfa
+"""Tests for Palmer & Goldberg PDFA learning algorithm."""
+from pdfa_learning.learn_pdfa.base import Algorithm
 from pdfa_learning.pdfa import PDFA
+from tests.pdfas import make_pdfa_one_state, make_pdfa_two_state
+from tests.test_learn_pdfa.base import PALMER_CONFIG, BaseTestLearnPDFA
 
 
-class Algorithm(Enum):
-    """Enumeration of supported PAC learning algorithms for PDFAs."""
+class TestOneState(BaseTestLearnPDFA):
+    """Test PDFA learning of one state PDFA."""
 
-    PALMER = "palmer"
-    BALLE = "balle"
+    ALGORITHM = Algorithm.PALMER
+    CONFIG = PALMER_CONFIG
+    ALPHABET_LEN = 2
+
+    @classmethod
+    def _make_automaton(cls) -> PDFA:
+        """Make automaton."""
+        return make_pdfa_one_state()
 
 
-_algorithm_to_function: Dict[Algorithm, Callable] = {
-    Algorithm.PALMER: palmer_learn_pdfa,
-    Algorithm.BALLE: balle_learn_pdfa,
-}
+class TestTwoState(BaseTestLearnPDFA):
+    """Test PDFA learning of two state PDFA."""
 
+    ALGORITHM = Algorithm.PALMER
+    CONFIG = PALMER_CONFIG
+    ALPHABET_LEN = 2
 
-def learn_pdfa(algorithm: Algorithm = Algorithm.BALLE, **kwargs) -> PDFA:
-    """
-    PAC-learn a PDFA.
-
-    :param kwargs: the keyword arguments of the algorithm.
-    :return: the learnt PDFA.
-    """
-    return _algorithm_to_function[algorithm](**kwargs)
+    @classmethod
+    def _make_automaton(cls) -> PDFA:
+        """Make automaton."""
+        return make_pdfa_two_state()

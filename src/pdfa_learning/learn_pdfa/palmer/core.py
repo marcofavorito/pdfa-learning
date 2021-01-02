@@ -19,33 +19,27 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with pdfa-learning.  If not, see <https://www.gnu.org/licenses/>.
 #
-"""Base module for the learn pdfa implementation."""
-from enum import Enum
-from typing import Callable, Dict
+"""Entrypoint for the algorithm."""
 
-from pdfa_learning.learn_pdfa.balle.core import learn_pdfa as balle_learn_pdfa
-from pdfa_learning.learn_pdfa.palmer.core import learn_pdfa as palmer_learn_pdfa
-from pdfa_learning.pdfa import PDFA
+import pprint
 
-
-class Algorithm(Enum):
-    """Enumeration of supported PAC learning algorithms for PDFAs."""
-
-    PALMER = "palmer"
-    BALLE = "balle"
+from pdfa_learning.learn_pdfa import logger
+from pdfa_learning.learn_pdfa.palmer.learn_probabilities import learn_probabilities
+from pdfa_learning.learn_pdfa.palmer.learn_subgraph import learn_subgraph
+from pdfa_learning.learn_pdfa.palmer.params import PalmerParams
 
 
-_algorithm_to_function: Dict[Algorithm, Callable] = {
-    Algorithm.PALMER: palmer_learn_pdfa,
-    Algorithm.BALLE: balle_learn_pdfa,
-}
-
-
-def learn_pdfa(algorithm: Algorithm = Algorithm.BALLE, **kwargs) -> PDFA:
+def learn_pdfa(**kwargs):
     """
     PAC-learn a PDFA.
 
-    :param kwargs: the keyword arguments of the algorithm.
+    :param kwargs: the keyword arguments of the algorithm (see the PalmerParams class).
     :return: the learnt PDFA.
     """
-    return _algorithm_to_function[algorithm](**kwargs)
+    params = PalmerParams(**kwargs)
+    logger.info(f"Parameters: {pprint.pformat(str(params))}")
+    vertices, transitions = learn_subgraph(params)
+    logger.info(f"Number of vertices: {len(vertices)}.")
+    logger.info(f"Transitions: {pprint.pformat(transitions)}.")
+    pdfa = learn_probabilities((vertices, transitions), params)
+    return pdfa
