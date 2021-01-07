@@ -114,7 +114,7 @@ class SampleMultisetManager:
             samples = list(map(lambda x: tuple(x), samples))
         else:
             samples = self.params.dataset
-        self.average_trace_length = sum(map(len, samples)) / len(samples)
+        self.average_trace_length = sum(map(len, samples)) / len(samples) if len(samples) != 0 else 0
         logger.info(f"Average trace length: {self.average_trace_length}.")
         logger.info("Populate root multiset.")
         self.main_multiset.update(samples)
