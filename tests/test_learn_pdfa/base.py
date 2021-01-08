@@ -39,6 +39,7 @@ BALLE_CONFIG = dict(
     algorithm=Algorithm.BALLE,
     nb_samples=20000,
     delta=0.1,
+    epsilon=0.1,
     n=10,
 )
 

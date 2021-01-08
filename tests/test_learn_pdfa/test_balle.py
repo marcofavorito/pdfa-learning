@@ -35,6 +35,7 @@ class TestOneState(BaseTestLearnPDFA):
     """Test PDFA learning of one state PDFA."""
 
     ALPHABET_LEN = 2
+    OVERWRITE_CONFIG = dict(nb_samples=30000)
 
     @classmethod
     def _make_automaton(cls) -> PDFA:

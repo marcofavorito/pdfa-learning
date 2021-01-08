@@ -32,7 +32,7 @@ from pdfa_learning.learn_pdfa.utils.multiset.tree import (
 )
 from pdfa_learning.types import Word
 
-MultisetLike = Multiset
+MultisetLike = Union[Multiset, Counter]
 
 
 def prefixes(t: Word) -> Iterable:
@@ -46,8 +46,8 @@ def prefixes(t: Word) -> Iterable:
 def l_infty_norm(multiset1: MultisetLike, multiset2: MultisetLike) -> float:
     """Compute the supremum distance between two probability distributions."""
     current_max = 0.0
-    card1 = multiset1.size
-    card2 = multiset2.size
+    card1 = size(multiset1)
+    card2 = size(multiset2)
     assert card1 > 0, "Cardinality of multiset shouldn't be zero."
     assert card2 > 0, "Cardinality of multiset shouldn't be zero."
     all_strings = set(multiset1).union(multiset2)
@@ -64,8 +64,8 @@ def prefix_distance_infty_norm(
 ) -> float:
     """Compute the supremum distance of prefixes of two probability distributions."""
     current_max = 0.0
-    card1 = multiset1.size
-    card2 = multiset2.size
+    card1 = size(multiset1)
+    card2 = size(multiset2)
     assert card1 > 0, "Cardinality of multiset shouldn't be zero."
     assert card2 > 0, "Cardinality of multiset shouldn't be zero."
     all_strings = set(multiset1).union(multiset2)
@@ -160,13 +160,19 @@ def _(multiset: Counter) -> int:
     return sum(multiset.values())
 
 
-"""
-for string in all_strings:
-    string = tuple(string)
-    for i in range(len(string)):
-        prefix, suffix = string[:i], string[i:]
-        d1 = get_prefix_probability(multiset1, prefix)
-        d2 = get_prefix_probability(multiset1, prefix)
-        norm = abs(d1 / card1 - d2 / card2)
-        current_max = max([norm, current_max])
-"""
+@singledispatch
+def prefixes_size(_multiset: MultisetLike) -> int:
+    """Get the multiset prefixes size."""
+    raise NotImplementedError
+
+
+@prefixes_size.register(Multiset)  # type: ignore
+def _(multiset: Multiset) -> int:
+    """Get the multiset prefixes size."""
+    return multiset.prefixes_size
+
+
+@prefixes_size.register(Counter)  # type: ignore
+def _(multiset: Counter) -> int:
+    """Get the multiset prefixes size."""
+    return sum([(len(trace) + 1) * count for trace, count in multiset.items()])

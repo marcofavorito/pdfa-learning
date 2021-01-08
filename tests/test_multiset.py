@@ -35,6 +35,7 @@ def test_multiset(multiset_class):
     """Test multiset."""
     multiset = multiset_class()
     assert multiset.size == 0
+    assert multiset.prefixes_size == 0
     assert multiset.traces == set()
     assert set(multiset.items()) == set()
     assert multiset.get_probability((0, 1, -1)) == 0.0
@@ -42,6 +43,7 @@ def test_multiset(multiset_class):
 
     multiset.add((0,))
     assert multiset.size == 1
+    assert multiset.prefixes_size == 2
     assert multiset.traces == {(0,)}
     assert set(multiset.items()) == {((0,), 1)}
     assert multiset.get_probability((0,)) == 1.0
@@ -49,6 +51,7 @@ def test_multiset(multiset_class):
 
     multiset.add((0, 1))
     assert multiset.size == 2
+    assert multiset.prefixes_size == 5
     assert multiset.traces == {
         (0,),
         (
@@ -72,6 +75,7 @@ def test_multiset(multiset_class):
 
     multiset.add((0,))
     assert multiset.size == 3
+    assert multiset.prefixes_size == 7
     assert multiset.traces == {(0,), (0, 1)}
     assert set(multiset.items()) == {((0,), 2), ((0, 1), 1)}
     assert multiset.get_probability((0,)) == 2 / 3
@@ -89,6 +93,7 @@ def test_multiset(multiset_class):
 
     multiset.add((1,))
     assert multiset.size == 4
+    assert multiset.prefixes_size == 9
     assert multiset.traces == {(0,), (1,), (0, 1)}
     assert set(multiset.items()) == {((0,), 2), ((1,), 1), ((0, 1), 1)}
     assert multiset.get_probability((0,)) == 1 / 2
@@ -132,6 +137,9 @@ def test_naive_multiset_and_prefix_based_multiset_equivalent(samples):
     )
 
     assert multiset_1.size == multiset_2.size == multiset_3.size
+    assert (
+        multiset_1.prefixes_size == multiset_2.prefixes_size == multiset_3.prefixes_size
+    )
     assert multiset_1.traces == multiset_2.traces == multiset_2.traces
     assert set(multiset_1.items()) == set(multiset_2.items()) == set(multiset_2.items())
 

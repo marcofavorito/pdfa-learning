@@ -20,6 +20,8 @@
 # along with pdfa-learning.  If not, see <https://www.gnu.org/licenses/>.
 #
 """Base helper module."""
+from typing import Any, Callable
+
 from pdfa_learning.types import TransitionFunctionDict
 
 
@@ -40,3 +42,19 @@ def normalize(f: TransitionFunctionDict) -> TransitionFunctionDict:
             result[start][char] = (end, prob / total)
 
     return result
+
+
+def cached(func: Callable[[Any], Any]):
+    """Make the function result cachable."""
+    func_name = func.__name__
+    attr_name = "_cached_" + func_name
+
+    def wrapper(self):
+        result = getattr(self, attr_name, None)
+        if result is not None:
+            return result
+        result = func(self)
+        setattr(self, attr_name, result)
+        return result
+
+    return wrapper
