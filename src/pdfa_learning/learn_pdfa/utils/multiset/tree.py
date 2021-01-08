@@ -31,15 +31,24 @@ from pdfa_learning.learn_pdfa.utils.multiset.base import Multiset
 from pdfa_learning.types import Character, Word
 
 
-@dataclass
 class _TreeMetadata:
     """Keep tree data."""
 
-    size: int = 0
-    alphabet_size: int = 0
+    __slots__ = [
+        "size",
+        "_cached_hash"
+    ]
+
+    def __init__(self, size: int):
+        """Initialize."""
+        self.size: int = size
+        self._cached_hash = None
 
     def __hash__(self):
-        return id(self)
+        if self._cached_hash:
+            return self._cached_hash
+        self._cached_hash = id(self)
+        return self._cached_hash
 
 
 class Node:
@@ -53,6 +62,8 @@ class Node:
         "_symbol2child",
         "counts",
         "children_counts",
+        "prefixes_size",
+        "_cached_hash",
     ]
 
     def __init__(self, parent: Optional["Node"], symbol: Optional[int] = None):
@@ -71,6 +82,9 @@ class Node:
             self._tree_metadata = _TreeMetadata(size=1)
             self._index = 0
 
+        self.prefixes_size = 0
+        self._cached_hash = None
+
     def add_child(self, symbol: int, node: "Node") -> None:
         """Add child."""
         assert symbol not in self._symbol2child
@@ -86,13 +100,15 @@ class Node:
         """Add a trace to the prefix tree."""
         current_node: Node = self
         current_node.children_counts += times
-        for character in trace:
+        current_node.prefixes_size += len(trace) * times
+        for index, character in enumerate(trace):
             next_node = current_node._symbol2child.get(character, None)
             if next_node is None:
                 # create a new node.
                 next_node = Node(current_node, character)
             current_node = next_node
             current_node.children_counts += times
+            current_node.prefixes_size += (len(trace) - (index + 1)) * times
         current_node.counts += times
 
     def get_end_node(self, trace: Word) -> Optional["Node"]:
@@ -161,11 +177,18 @@ class Node:
 
     def __hash__(self) -> int:
         """Get hash."""
-        return hash((Node, self.index, self._tree_metadata))
+        if self._cached_hash:
+            return self._cached_hash
+        self._cached_hash = hash((Node, self.index, self._tree_metadata))
+        return self._cached_hash
 
 
 class PrefixTreeMultiset(Multiset):
     """A multi-set based on a prefix tree."""
+
+    __slots__ = [
+        "_node",
+    ]
 
     def __init__(self, node: Optional[Node] = None):
         """
@@ -187,6 +210,11 @@ class PrefixTreeMultiset(Multiset):
     def size(self) -> int:
         """Get the size."""
         return self._node.children_counts
+
+    @property
+    def prefixes_size(self) -> int:
+        """Get the size of all the multiset of all the prefixes."""
+        return self._node.prefixes_size
 
     def get_probability(self, t: Word) -> float:
         """Get the probability of a trace."""
@@ -236,6 +264,8 @@ class ReadOnlyPrefixTreeMultiset(Multiset):
         """
         self._nodes = nodes if nodes is not None else {Node(parent=None)}
 
+        self._cached_size = None
+
     def get_successors(self) -> Dict[Character, "ReadOnlyPrefixTreeMultiset"]:
         """Get successors."""
         successors: Dict[Character, Set[Node]] = {}
@@ -259,7 +289,15 @@ class ReadOnlyPrefixTreeMultiset(Multiset):
     @property
     def size(self) -> int:
         """Get the size."""
-        return sum(n.children_counts for n in self._nodes)
+        if self._cached_size:
+            return self._cached_size
+        self._cached_size = sum(n.children_counts for n in self._nodes)
+        return self.size
+
+    @property
+    def prefixes_size(self) -> int:
+        """Get the size of all the multiset of all the prefixes."""
+        return sum(n.prefixes_size for n in self._nodes)
 
     def get_probability(self, t: Word) -> float:
         """Get the probability of a trace."""

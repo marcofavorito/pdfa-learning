@@ -48,6 +48,11 @@ class Multiset(ABC):
     def size(self) -> int:
         """Get the size."""
 
+    @property
+    @abstractmethod
+    def prefixes_size(self) -> int:
+        """Get the size of all the multiset of all the prefixes."""
+
     @abstractmethod
     def get_probability(self, t: Word) -> float:
         """Get the probability of a trace."""

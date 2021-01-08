@@ -32,7 +32,7 @@ from pdfa_learning.learn_pdfa.utils.multiset.tree import (
 )
 from pdfa_learning.types import Word
 
-MultisetLike = Union[Multiset, Counter]
+MultisetLike = Multiset
 
 
 def prefixes(t: Word) -> Iterable:
@@ -46,8 +46,8 @@ def prefixes(t: Word) -> Iterable:
 def l_infty_norm(multiset1: MultisetLike, multiset2: MultisetLike) -> float:
     """Compute the supremum distance between two probability distributions."""
     current_max = 0.0
-    card1 = sum(multiset1.values())
-    card2 = sum(multiset2.values())
+    card1 = multiset1.size
+    card2 = multiset2.size
     assert card1 > 0, "Cardinality of multiset shouldn't be zero."
     assert card2 > 0, "Cardinality of multiset shouldn't be zero."
     all_strings = set(multiset1).union(multiset2)
@@ -64,8 +64,8 @@ def prefix_distance_infty_norm(
 ) -> float:
     """Compute the supremum distance of prefixes of two probability distributions."""
     current_max = 0.0
-    card1 = sum(multiset1.values())
-    card2 = sum(multiset2.values())
+    card1 = multiset1.size
+    card2 = multiset2.size
     assert card1 > 0, "Cardinality of multiset shouldn't be zero."
     assert card2 > 0, "Cardinality of multiset shouldn't be zero."
     all_strings = set(multiset1).union(multiset2)

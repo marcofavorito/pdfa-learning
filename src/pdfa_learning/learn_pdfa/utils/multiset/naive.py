@@ -47,6 +47,13 @@ class NaiveMultiset(Multiset):
         """Get the size of the multiset."""
         return sum(self._counter.values())
 
+    @property
+    def prefixes_size(self) -> int:
+        """Get the size of all the multiset of all the prefixes."""
+        return sum(
+            [len(trace) * count for trace, count in self.items()]
+        )
+
     def get_probability(self, t: Word) -> float:
         """Get the probability of a trace."""
         if self.size == 0:

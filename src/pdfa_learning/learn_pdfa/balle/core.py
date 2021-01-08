@@ -202,13 +202,13 @@ class PDFAConstructor:
     def _compute_edge_probability(self, state: int, character: int):
         """Given state and character, compute probability."""
         multiset = self.graph.vertex2multiset.get(state, ConcreteMultiset())  # type: ignore
-        size = sum(multiset.values())
+        multiset_size = multiset.size
         smoothing_probability = (
             self.params.get_gamma_min(self.sample.average_trace_length)
             if self.params.with_smoothing
             else 0.0
         )
-        if size == 0:
+        if multiset_size == 0:
             return self.params.get_gamma_min(self.sample.average_trace_length)
         char_prob = get_prefix_probability(multiset, (character,))
         factor = 1 - (self.params.alphabet_size + 1) * smoothing_probability
@@ -272,7 +272,7 @@ class CandidateNodesCalculator:
             chosen_candidate_node,
             biggest_multiset,
         ) = self.compute_multisets_and_get_biggest()
-        if sum(biggest_multiset.values()) == 0:
+        if biggest_multiset.size == 0:
             logger.info("Biggest multiset has cardinality 0, done")
             return True
 
@@ -370,7 +370,7 @@ class CandidateNodesCalculator:
         """Compute the biggest multiset."""
         return max(
             self.multisets.items(),
-            key=lambda x: sum(x[1].values()),
+            key=lambda x: x[1].size,
             default=(-1, self.multiset_cls()),
         )
 
@@ -394,12 +394,8 @@ class CandidateNodesCalculator:
         """Test distinctness of two vertices."""
         multiset_candidate = self.multisets[chosen_candidate_node]
         multiset_safe = self.graph.vertex2multiset[v]
-        prefixes_candidate = sum(
-            [(len(trace) + 1) * count for trace, count in multiset_candidate.items()]
-        )
-        prefixes_safe = sum(
-            [(len(trace) + 1) * count for trace, count in multiset_safe.items()]
-        )
+        prefixes_candidate = multiset_candidate.prefixes_size
+        prefixes_safe = multiset_safe.prefixes_size
         threshold = _compute_threshold(
             size(multiset_candidate),
             size(multiset_safe),
